@@ -23,13 +23,10 @@ function boid.new(startx, starty)
 
 	function self.updatePosition()
 		 position = vo.add(position, velocity)
-		steps = steps + 1
 
 		--Reached goal - recalculate velocity to stay near it!
-		if(steps >= maxsteps) then
-			self.calcVelocity()
-		end
-
+		self.calcVelocity()
+		
 	end	
 
 	function self.updateTarget(targetx, targety)
@@ -40,12 +37,16 @@ function boid.new(startx, starty)
 
 	function self.calcVelocity()
 		velocity = vo.scalarDiv(vo.subtract(target, position), maxsteps) -- reach goal in 1000 steps
-		steps = 0
 	end	
 
 
 	function self.updateVelocity(vel)
 		velocity = vo.add(velocity, vel)
+	end	
+
+
+	function self.getVelocity()
+		return velocity
 	end	
 
 

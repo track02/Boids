@@ -16,7 +16,7 @@ end
 
 function love.load()
 
-	createBoids(50)
+	createBoids(25)
 
 end
 
@@ -24,11 +24,14 @@ function love.update(dt)
 
 	for i = 1, #boidTable, 1 do
 
-		sepVel = {x = 0, y = 0}
-		alnVel = {x = 0, y = 0}
-		cohVel = {x = 0, y = 0}
+		sepVel = brules.separation(boidTable[i], boidTable)
+		alnVel = brules.alignment(boidTable[i], boidTable)
+		cohVel = brules.cohesion(boidTable[i], boidTable)
 
-		--boidTable[i].updateVelocity()
+		boidTable[i].updateVelocity(sepVel)
+		boidTable[i].updateVelocity(alnVel)
+		boidTable[i].updateVelocity(cohVel)
+
 
 		boidTable[i].updatePosition()
 
