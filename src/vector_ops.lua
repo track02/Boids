@@ -63,4 +63,16 @@ function vector_ops.scalarDiv(v1, scalar)
 
 end
 
+function vector_ops.normalise(v1)
+
+
+	length = math.sqrt((v1.x * v1.x) + (v1.y * v1.y))
+
+	v1.x = v1.x / length
+	v1.y = v1.y / length
+
+	return v1
+	
+end	
+
 return vector_ops

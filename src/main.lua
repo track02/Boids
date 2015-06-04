@@ -22,9 +22,13 @@ end
 
 function love.update(dt)
 
+
 	for i = 1, #boidTable, 1 do
 
-		sepVel = brules.separation(boidTable[i], boidTable)
+		neighbours = brules.findNeighbours(boidTable[i], boidTable)
+
+
+		sepVel = brules.separation(boidTable[i], neighbours)
 		alnVel = brules.alignment(boidTable[i], boidTable)
 		cohVel = brules.cohesion(boidTable[i], boidTable)
 
