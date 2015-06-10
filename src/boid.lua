@@ -14,7 +14,7 @@ function boid.new(startx, starty)
 	local velocity = {x = 0, y = 0}
 
 	--Step count
-	local maxsteps = 100
+	local maxsteps = 1000
 	local steps = 0
 
 	function self.getPosition()

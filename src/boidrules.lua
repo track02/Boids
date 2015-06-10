@@ -32,7 +32,7 @@ function boidrules.separation(boid, boids)
 	v = {x = 0, y = 0}
 
 	bv1 = boid.getPosition()
-	separationdistance = 100
+	separationdistance = 50
 
 	for i = 1, #boids, 1 do 
 
@@ -106,6 +106,37 @@ function boidrules.findNeighbours(boid, boids)
 	return neighbourTable
 
 end	
+
+
+
+function boidrules.avoidance(boid, obs)
+
+	v = {x = 0, y = 0}
+
+	bv1 = boid.getPosition()
+	separationdistance = 100
+
+	for i = 1, #obs, 1 do 
+
+		bv2 = obs[i].getPosition()
+
+
+		if(vop.distance(bv1, bv2) < separationdistance) then
+			
+			bvdiff = vop.subtract(bv2, bv1) --Distance between the two
+			v1 = vop.subtract(v, bvdiff)
+			v1 = vop.normalise(v1)
+			v1 = vop.scalarDiv(v1, vop.distance(bv1,bv2))
+			v = vop.add(v, v1)
+
+		end			
+	end	
+
+
+	return v
+
+end 
+
 
 
 return boidrules
